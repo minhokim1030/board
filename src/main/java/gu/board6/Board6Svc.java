@@ -40,7 +40,7 @@ public class Board6Svc {
         TransactionStatus status = txManager.getTransaction(def);
         
         try {
-            if (param.getBrdno() == null || "".equals(param.getBrdno())) {
+            if (param.getbno() == null || "".equals(param.getbno())) {
                  sqlSession.insert("insertBoard6", param);
             } else {
                 sqlSession.update("updateBoard6", param);
@@ -53,7 +53,7 @@ public class Board6Svc {
             }
             
             for (FileVO f : filelist) {
-                f.setParentPK(param.getBrdno());
+                f.setParentPK(param.getbno());
                 sqlSession.insert("insertBoard6File", f);
             }
             txManager.commit(status);
@@ -88,14 +88,14 @@ public class Board6Svc {
      * 댓글 저장. 
      */
     public void insertBoardReply(BoardReplyVO param) {
-        if (param.getReno() == null || "".equals(param.getReno())) {
+        if (param.getrno() == null || "".equals(param.getrno())) {
             if (param.getReparent() != null) {
                 BoardReplyVO replyInfo = sqlSession.selectOne("selectBoard6ReplyParent", param.getReparent());
                 param.setRedepth(replyInfo.getRedepth());
                 param.setReorder(replyInfo.getReorder() + 1);
                 sqlSession.selectOne("updateBoard6ReplyOrder", replyInfo);
             } else {
-                Integer reorder = sqlSession.selectOne("selectBoard6ReplyMaxOrder", param.getBrdno());
+                Integer reorder = sqlSession.selectOne("selectBoard6ReplyMaxOrder", param.getbno());
                 param.setReorder(reorder);
             }
             

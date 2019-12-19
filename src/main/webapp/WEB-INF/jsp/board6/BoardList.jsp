@@ -39,20 +39,20 @@ function fn_formSubmit(){
 		<tbody>
 			<c:forEach var="listview" items="${listview}" varStatus="status">	
 				<c:url var="link" value="board6Read">
-					<c:param name="brdno" value="${listview.brdno}" />
+					<c:param name="bno" value="${listview.bno}" />
 				</c:url>		
 										  				
 				<tr>
 					<td><c:out value="${searchVO.totRow-((searchVO.page-1)*searchVO.displayRowCount + status.index)}"/></td>
 					<td style="max-width: 100px; border: 1px solid black; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;">
-						<a href="${link}"><c:out value="${listview.brdtitle}"/></a>
+						<a href="${link}"><c:out value="${listview.btitle}"/></a>
 						<c:if test="${listview.replycnt>0}">
 							(<c:out value="${listview.replycnt}"/>)
 						</c:if>						
 					</td>
-					<td><c:out value="${listview.brdwriter}"/></td>
-					<td><c:out value="${listview.brddate}"/></td>
-					<td><c:out value="${listview.brdhit}"/></td>
+					<td><c:out value="${listview.uno}"/></td>
+					<td><c:out value="${listview.bwdate}"/></td>
+					<td><c:out value="${listview.bviewcnt}"/></td>
 					<td><c:out value="${listview.filecnt}"/></td>
 				</tr>
 			</c:forEach>
@@ -63,9 +63,9 @@ function fn_formSubmit(){
 	    <jsp:include page="/WEB-INF/jsp/common/pagingforSubmit.jsp" />
 	    
 		<div>
-			<input type="checkbox" name="searchType" value="brdtitle" <c:if test="${fn:indexOf(searchVO.searchType, 'brdtitle')!=-1}">checked="checked"</c:if>/>
+			<input type="checkbox" name="searchType" value="btitle" <c:if test="${fn:indexOf(searchVO.searchType, 'btitle')!=-1}">checked="checked"</c:if>/>
 			<label class="chkselect" for="searchType1">제목</label>
-			<input type="checkbox" name="searchType" value="brdmemo" <c:if test="${fn:indexOf(searchVO.searchType, 'brdmemo')!=-1}">checked="checked"</c:if>/>
+			<input type="checkbox" name="searchType" value="bcontent" <c:if test="${fn:indexOf(searchVO.searchType, 'bcontent')!=-1}">checked="checked"</c:if>/>
 			<label class="chkselect" for="searchType2">내용</label>
 			<input type="text" name="searchKeyword" style="width:150px;" maxlength="50" value='<c:out value="${searchVO.searchKeyword}"/>' onkeydown="if(event.keyCode == 13) { fn_formSubmit();}">
 			<input name="btn_search" value="검색" class="btn_sch" type="button" onclick="fn_formSubmit()" />

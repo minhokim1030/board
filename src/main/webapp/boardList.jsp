@@ -22,23 +22,23 @@
 		<tbody>
 <%
 	Class.forName("com.mysql.jdbc.Driver");
-	String url = "jdbc:mysql://localhost/board";
-	String id = "root"; 
-	String pw = "비밀번호";
+	String url = "jdbc:log4jdbc:mysql://127.0.0.1:3306/boarddb";
+	String id = "board"; 
+	String pw = "pass";
 	Connection conn=DriverManager.getConnection(url,id,pw);
 	Statement stmt=conn.createStatement();
 	
-	String query="SELECT BRDNO, BRDTITLE, BRDWRITER, DATE_FORMAT(BRDDATE,'%Y-%m-%d') BRDDATE " + 
+	String query="SELECT BNO, BTITLE, UNO, DATE_FORMAT(BWDATE,'%Y-%m-%d') BWDATE " + 
 				 "  FROM TBL_BOARD";
 	ResultSet rs = stmt.executeQuery(query);
 	
 	while(rs.next()){
 %>		
 				<tr>
-					<td><%=rs.getString("brdno")%></td>
-					<td><a href="board1Read?brdno=<%=rs.getString("brdno")%>"><%=rs.getString("brdtitle")%></a></td>
-					<td><%=rs.getString("brdwriter")%></td>
-					<td><%=rs.getString("brddate")%></td>
+					<td><%=rs.getString("BNO")%></td>
+					<td><a href="board1Read?BNO=<%=rs.getString("BNO")%>"><%=rs.getString("BTITLE")%></a></td>
+					<td><%=rs.getString("UNO")%></td>
+					<td><%=rs.getString("BWDATE")%></td>
 				</tr>
 <%
 	}//	while(rs.next()){

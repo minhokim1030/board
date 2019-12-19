@@ -10,19 +10,19 @@
 function fn_formSubmit(){
 	var form1 = document.form1;
 	
-	if (form1.brdwriter.value=="") {
+	if (form1.uno.value=="") {
 		alert("작성자를 입력해주세요.");
-		form1.brdwriter.focus();
+		form1.uno.focus();
 		return;
 	}
-	if (form1.brdtitle.value=="") {
+	if (form1.btitle.value=="") {
 		alert("글 제목을 입력해주세요.");
-		form1.brdtitle.focus();
+		form1.btitle.focus();
 		return;
 	}
-	if (form1.brdmemo.value=="") {
+	if (form1.bcontent.value=="") {
 		alert("글 내용을 입력해주세요.");
-		form1.brdmemo.focus();
+		form1.bcontent.focus();
 		return;
 	}
 	document.form1.submit();	
@@ -40,15 +40,15 @@ function fn_formSubmit(){
 			<tbody>
 				<tr>
 					<td>작성자</td> 
-					<td><input type="text" name="brdwriter" size="20" maxlength="20" value="<c:out value="${boardInfo.brdwriter}"/>"></td> 
+					<td><input type="text" name="uno" size="20" maxlength="20" value="<c:out value="${boardInfo.uno}"/>"></td> 
 				</tr>
 				<tr>
 					<td>제목</td> 
-					<td><input type="text" name="brdtitle" size="70" maxlength="250" value="<c:out value="${boardInfo.brdtitle}"/>"></td> 
+					<td><input type="text" name="btitle" size="70" maxlength="250" value="<c:out value="${boardInfo.btitle}"/>"></td> 
 				</tr>
 				<tr>
 					<td>내용</td> 
-					<td><textarea name="brdmemo" rows="5" cols="60"><c:out value="${boardInfo.brdmemo}"/></textarea></td> 
+					<td><textarea name="bcontent" rows="5" cols="60"><c:out value="${boardInfo.bcontent}"/></textarea></td> 
 				</tr>
 				<tr>
 					<td>첨부</td> 
@@ -64,7 +64,7 @@ function fn_formSubmit(){
 				</tr>
 			</tbody>
 		</table>     
-		<input type="hidden" name="brdno" value="<c:out value="${boardInfo.brdno}"/>"> 
+		<input type="hidden" name="bno" value="<c:out value="${boardInfo.bno}"/>"> 
 		<a href="#" onclick="fn_formSubmit()">저장</a>
 	</form>	
 </body>

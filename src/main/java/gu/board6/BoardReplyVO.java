@@ -2,8 +2,8 @@ package gu.board6;
 
 public class BoardReplyVO {
 
-    private String brdno;
-    private String reno;
+    private String bno;
+    private String rno;
     private String rewriter;
     private String redeleteflag;
     private String rememo;
@@ -12,20 +12,20 @@ public class BoardReplyVO {
     private String redepth;
     private Integer reorder;
     
-    public String getBrdno() {
-        return brdno;
+    public String getbno() {
+        return bno;
     }
     
-    public void setBrdno(String brdno) {
-        this.brdno = brdno;
+    public void setbno(String bno) {
+        this.bno = bno;
     }
     
-    public String getReno() {
-        return reno;
+    public String getrno() {
+        return rno;
     }
     
-    public void setReno(String reno) {
-        this.reno = reno;
+    public void setrno(String rno) {
+        this.rno = rno;
     }
     
     public String getRewriter() {

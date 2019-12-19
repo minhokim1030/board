@@ -39,10 +39,10 @@ public class Board6Ctr {
      */
     @RequestMapping(value = "/board6Form")
     public String boardForm(HttpServletRequest request, ModelMap modelMap) {
-        String brdno = request.getParameter("brdno");
-        if (brdno != null) {
-            BoardVO boardInfo = boardSvc.selectBoardOne(brdno);
-            List<?> listview = boardSvc.selectBoard6FileList(brdno);
+        String bno = request.getParameter("bno");
+        if (bno != null) {
+            BoardVO boardInfo = boardSvc.selectBoardOne(bno);
+            List<?> listview = boardSvc.selectBoard6FileList(bno);
         
             modelMap.addAttribute("boardInfo", boardInfo);
             modelMap.addAttribute("listview", listview);
@@ -72,12 +72,12 @@ public class Board6Ctr {
     @RequestMapping(value = "/board6Read")
     public String board6Read(HttpServletRequest request, ModelMap modelMap) {
         
-        String brdno = request.getParameter("brdno");
+        String bno = request.getParameter("bno");
         
-        boardSvc.updateBoard6Read(brdno);
-        BoardVO boardInfo = boardSvc.selectBoardOne(brdno);
-        List<?> listview = boardSvc.selectBoard6FileList(brdno);
-        List<?> replylist = boardSvc.selectBoard6ReplyList(brdno);
+        boardSvc.updateBoard6Read(bno);
+        BoardVO boardInfo = boardSvc.selectBoardOne(bno);
+        List<?> listview = boardSvc.selectBoard6FileList(bno);
+        List<?> replylist = boardSvc.selectBoard6ReplyList(bno);
         
         modelMap.addAttribute("boardInfo", boardInfo);
         modelMap.addAttribute("listview", listview);
@@ -92,9 +92,9 @@ public class Board6Ctr {
     @RequestMapping(value = "/board6Delete")
     public String boardDelete(HttpServletRequest request) {
         
-        String brdno = request.getParameter("brdno");
+        String bno = request.getParameter("bno");
         
-        boardSvc.deleteBoardOne(brdno);
+        boardSvc.deleteBoardOne(bno);
         
         return "redirect:/board6List";
     }
@@ -109,7 +109,7 @@ public class Board6Ctr {
         
         boardSvc.insertBoardReply(boardReplyInfo);
 
-        return "redirect:/board6Read?brdno=" + boardReplyInfo.getBrdno();
+        return "redirect:/board6Read?bno=" + boardReplyInfo.getbno();
     }
     
     /**
@@ -118,10 +118,10 @@ public class Board6Ctr {
     @RequestMapping(value = "/board6ReplyDelete")
     public String board6ReplyDelete(HttpServletRequest request, BoardReplyVO boardReplyInfo) {
         
-        if (!boardSvc.deleteBoard6Reply(boardReplyInfo.getReno()) ) {
+        if (!boardSvc.deleteBoard6Reply(boardReplyInfo.getrno()) ) {
             return "board6/BoardFailure";
         }
 
-        return "redirect:/board6Read?brdno=" + boardReplyInfo.getBrdno();
+        return "redirect:/board6Read?bno=" + boardReplyInfo.getbno();
     }      
 }
